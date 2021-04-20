@@ -4,7 +4,7 @@ title: About me
 subtitle: All about me
 ---
 
-Atiq | Data Engineer | Malaysian working in Japan.
+Atiq - Data Engineer - Malaysian working in Japan.
 
 Current location:
 - Johor Bahru, Malaysia

@@ -1,16 +1,14 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: All about me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
-
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
+Atiq | Malaysian working in Japan.
+Current location:
+- Johor Bahru, Malaysia
 
 ### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+I got my Ph.D in Engineering from Keio University in Japan.
+Fly all the way from Malaysia in 2010 to complete my Engineering degree in Yamaguchi University.
+Lived in a peaceful countryside called Ube, Yamaguchi until 2014.

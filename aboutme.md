@@ -4,7 +4,7 @@ title: About me
 subtitle: All about me
 ---
 
-Atiq - Data Engineer - Malaysian working in Japan.
+Atiq - Data Engineer
 
 Current location:
 - Johor Bahru, Malaysia
@@ -18,4 +18,6 @@ Moved to Yokohama and got my Ph.D in Engineering from Keio University.
 
 Worked in an international school after graduating while waiting for my wife to finish her studies.
 
-Introduced to the current company I am working with on 2018.
+Introduced to the current company I am working with on 2018. [link]
+
+[link] : https://www.goga-analysis.co.jp/

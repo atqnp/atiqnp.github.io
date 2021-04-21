@@ -20,4 +20,4 @@ Worked in an international school after graduating while waiting for my wife to 
 
 Introduced to the current company I am working with on 2018. [link]
 
-[link] : https://www.goga-analysis.co.jp/
+[link]:https://www.goga-analysis.co.jp/

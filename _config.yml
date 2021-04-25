@@ -18,6 +18,7 @@ navbar-links:
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
+    - Apache Beam: "https://beam.apache.org/"
   Main: "https://atqnp.github.io"
 
 # --- Logo --- #

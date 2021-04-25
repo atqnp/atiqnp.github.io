@@ -2,18 +2,18 @@
 layout: post
 title: Simple, Quick, and Easy Beam
 subtitle: A simple (and hopefully, quick and easy) guide on Apache Beam (Python SDK)
-tags: [apahce, beam, guide, introduction, beginner, python]
+tags: [apache, beam, guide, beginner, python]
 ---
 
 In the previous post, I talked a little bit about Beam. So, what exactly is Beam?
 
 Beam is an open source project as a tool on data pipeline. It is one of the project under Apache Software Foundation and just recently, it got out of incubation (Yeay! 😄).
 
-You can read more about it on their website [here](https://beam.apache.org/)
+You can read more about it on their website [here](https://beam.apache.org/).
 
 Basically, Beam is a tool for batch or streaming processing of data. That is where the name comes from **B**atch and str**eam**. Using the SDKs, you can use it to build a program to define the pipeline of the process. Currently, there are 3 SDKs; Java, Python and Go.
 
-I was lucky to be introduced to Beam through my collegue at work but during that time there was not many guide on creating Beam pipeline using Python. (Maybe because most of the developer wrote it in Java, I guess)
+I was lucky to be introduced to Beam through my collegue at work but during that time there was not many guide on creating Beam pipeline using Python (Maybe because most of the developer wrote it in Java, I guess).
 
 So, here I will be going to show a simple tutorial (hopefully 😀) *for you to get your hands dirty* using a Python script. I will also try to explain the process and the Beam concept and terminology together with the process.
 

@@ -5,7 +5,6 @@ subtitle: A simple (and hopefully, quick and easy) guide on Apache Beam (Python 
 tags: [apahce, beam, guide, introduction, beginner, python]
 ---
 
-### Introduction
 In the previous post, I talked a little bit about Beam. So, what exactly is Beam?
 
 Beam is an open source project as a tool on data pipeline. It is one of the project under Apache Software Foundation and just recently, it got out of incubation (Yeay! 😄).
@@ -47,7 +46,7 @@ There are also other options that can be adjusted, but, for easier purposes, I a
 
 ### Process in the pipeline
 Next, create a function to state the transformation process. It can be any type of transformation; replace string, etc. As note, there are 2 terminology that you should know in Beam; **PCollection** and **Transform**. The simplest form of pipeline can be shown as this:
-```bash
+```
 Input PCollection -> Transform >> Output PCollection
 ```
 
@@ -92,7 +91,7 @@ with beam.Pipeline() as p:
 ```
 
 Now, our pipeline is complete. Try to run the above code and you will get these
-```bash
+```
 cat dog
 monkey dog
 snake cat
@@ -102,8 +101,10 @@ cat
 ```
 
 In a simple term the ```output``` is the output of the data and to get the output, Beam ```create``` the data and ```map``` the data with the built-in python ```print``` function. The whole process runs inside the pipeline that is defined by ```p```. To show this as a pipeline shown above regarding PCollection, you can understand it as:
-```bash
-create data (Input PCollection) -> print out data (Transform) -> output (Output PCollection)
+```
+create data (Input PCollection) 
+-> print out data (Transform) 
+-> output (Output PCollection)
 ```
 
 You may notice that in the above python code that we can each part of the pipeline.
@@ -138,7 +139,7 @@ with beam.Pipeline() as p:
 ```
 
 The output will return the results as follows
-```bash
+```
 cat 
 dog
 monkey 
@@ -151,7 +152,7 @@ cat
 ```
 
 Just as a side note. If ```Map``` was used rather than ```FlatMap```, the results will be:
-```bash
+```
 ['cat', 'dog']
 ['monkey', 'dog']
 ['snake', 'cat']
@@ -161,8 +162,12 @@ Just as a side note. If ```Map``` was used rather than ```FlatMap```, the result
 ```
 
 As you can see the data is written nicely with ```FlatMap```. Each element per line. The pipeline now becomes:
-```bash
-create data (Input PCollection) -> split data (Transform) -> (PCollection) -> print out data (Transform) -> output (Output PCollection)
+```
+create data (Input PCollection) 
+-> split data (Transform) 
+-> (PCollection) 
+-> print out data (Transform) 
+-> output (Output PCollection)
 ```
 
 So, as you can see based on the pipeline, now it is hard see the data between ```split data``` and ```print out data``` right? But, because we just use a print function what happen after ```split data``` is exactly the same as ```print out data```.
@@ -184,7 +189,7 @@ with beam.Pipeline() as p:
 ```
 
 If you run the above code, the results will be as follows:
-```bash
+```
 ('cat', 3)
 ('dog', 3)
 ('monkey', 1)
@@ -193,8 +198,14 @@ If you run the above code, the results will be as follows:
 ```
 
 And, the pipeline becomes
-```bash
-create data (Input PCollection) -> split data (Transform) -> (PCollection) -> count data (Transform) -> (PCollection) -> print out data (Transform) -> output (Output PCollection)
+```
+create data (Input PCollection) 
+-> split data (Transform) 
+-> (PCollection) 
+-> count data (Transform) 
+-> (PCollection) 
+-> print out data (Transform) 
+-> output (Output PCollection)
 ```
 
 As you can see, the data is counted and we could get the numbers for each element. So, the provided function is a very good one and there are others that you can check [here](https://beam.apache.org/documentation/transforms/python/aggregation/count/)

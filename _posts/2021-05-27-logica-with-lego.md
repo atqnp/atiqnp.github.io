@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Logica with LEGO
-subtitle: Exploring Logica using LEGO dataset
+subtitle: Exploring LEGO dataset using Logica
 tags: [logica, lego, sql, bigquery]
 ---
 

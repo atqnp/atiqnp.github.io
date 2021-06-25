@@ -5,6 +5,7 @@ subtitle: Exploring Logica using LEGO dataset
 tags: [logica, lego, sql, bigquery]
 ---
 
+It has been a few weeks since my last post. I am still taking some time to get the right mood and consistency for writing :grin:. Here, I will explain a little bit about Logica, a language that I had been learning for the past weeks. Since the post is too long, I had to break it down into parts. So, here goes part 1. I will update this space when the next part has been published. 
 
 ## Introduction
 
@@ -385,5 +386,4 @@ This will perform a `UNION` on the sets that was made in 1999 and 2019.
 
 I wasn't expecting the explanation to be this long :laughing:. I was going to perform some simple data exploration but since it became so long, I decide to break it into parts. So, I will continue with them on my next post. Stay tuned!
 
-
-
+p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts :relaxed:

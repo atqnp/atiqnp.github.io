@@ -10,20 +10,14 @@ It has been a few weeks since my last post. I am still taking some time to get t
 ## Introduction
 
 Recently, Google introduce a new logical-based language in order to make SQL more accessible. It is called Logica.
-If you knew SQL then you might be familiar with all the syntax but Logica just made easier. You can read more about it [here][1] and [here][2]
-[1]: https://opensource.google/projects/logica
-[2]: https://opensource.googleblog.com/2021/04/logica-organizing-your-data-queries.html
+If you knew SQL then you might be familiar with all the syntax but Logica just made easier. You can read more about it [here](https://opensource.google/projects/logica) and [here](https://opensource.googleblog.com/2021/04/logica-organizing-your-data-queries.html)
 
 At the time of this writing, it is only available for BigQuery processing engine but there are also others in the work.
 In this post, I will be going to share a little bit about what I did using Logica while learning them so you could also consider this as a kind of tutorial 😜.
 Because I love LEGO, and it became a new hobby of mine (actually I loved them since my childhood but they were very expensive for me 😆), so I combined Logica with LEGO and try to explore the data with it.
 
-Before we go further, a few points to note. The dataset was taken from rebrickable. If you want, you can get them [here][4]. The dataset there is always renewed daily. The one that I used was on/until 26th of May 2021. So it may differs based on the date that you download the dataset. Another point to be taken; the work was done using [Google Colaboratory][5]. You can try and run it yourself. I will try to attach a link to my notebook at the end of this post. Logica can also be run locally and its scripts can be written in its own file ending with the `.l` extension. However, I will not get into that here. If you want to learn more about it you can check it [here][6]
-Another thing to note, before I forgot, a Google Cloud Platform (GCP) account is required to run the program. You can try and make a free account [here][7]
-[3]: https://rebrickable.com/downloads/
-[4]: https://colab.research.google.com/
-[5]: https://logica.dev/
-[6]: https://cloud.google.com/
+Before we go further, a few points to note. The dataset was taken from rebrickable. If you want, you can get them [here](https://rebrickable.com/downloads/). The dataset there is always renewed daily. The one that I used was on/until 26th of May 2021. So it may differs based on the date that you download the dataset. Another point to be taken; the work was done using [Google Colaboratory](https://colab.research.google.com/). You can try and run it yourself. I will try to attach a link to my notebook at the end of this post. Logica can also be run locally and its scripts can be written in its own file ending with the `.l` extension. However, I will not get into that here. If you want to learn more about it you can check it [here](https://logica.dev/)
+Another thing to note, before I forgot, a Google Cloud Platform (GCP) account is required to run the program. You can try and make a free account [here](https://cloud.google.com/)
 
 UPDATE: If you don't want to make a GCP account, Logica can use the SQLite engine.
 

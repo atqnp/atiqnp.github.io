@@ -5,7 +5,7 @@ subtitle: Exploring Logica using LEGO dataset
 tags: [logica, lego, sql, bigquery]
 ---
 
-It has been a few weeks since my last post. I am still taking some time to get the right mood and consistency for writing :grin:. Here, I will explain a little bit about Logica, a language that I had been learning for the past weeks. Since the post is too long, I had to break it down into parts. So, here goes part 1. I will update this space when the next part has been published. 
+It has been a few weeks since my last post. I am still taking some time to get the right mood and consistency for writing 😁. Here, I will explain a little bit about Logica, a language that I had been learning for the past weeks. Since the post is too long, I had to break it down into parts. So, here goes part 1. I will update this space when the next part has been published. 
 
 ## Introduction
 
@@ -15,8 +15,8 @@ If you knew SQL then you might be familiar with all the syntax but Logica just m
 [2]: https://opensource.googleblog.com/2021/04/logica-organizing-your-data-queries.html
 
 At the time of this writing, it is only available for BigQuery processing engine but there are also others in the work.
-In this post, I will be going to share a little bit about what I did using Logica while learning them so you could also consider this as a kind of tutorial :stuck_out_tongue_winking_eye:.
-Because I love LEGO, and it became a new hobby of mine (actually I loved them since my childhood but they were very expensive for me :laughing:), so I combined Logica with LEGO and try to explore the data with it.
+In this post, I will be going to share a little bit about what I did using Logica while learning them so you could also consider this as a kind of tutorial 😜.
+Because I love LEGO, and it became a new hobby of mine (actually I loved them since my childhood but they were very expensive for me 😆), so I combined Logica with LEGO and try to explore the data with it.
 
 Before we go further, a few points to note. The dataset was taken from rebrickable. If you want, you can get them [here][4]. The dataset there is always renewed daily. The one that I used was on/until 26th of May 2021. So it may differs based on the date that you download the dataset. Another point to be taken; the work was done using [Google Colaboratory][5]. You can try and run it yourself. I will try to attach a link to my notebook at the end of this post. Logica can also be run locally and its scripts can be written in its own file ending with the `.l` extension. However, I will not get into that here. If you want to learn more about it you can check it [here][6]
 Another thing to note, before I forgot, a Google Cloud Platform (GCP) account is required to run the program. You can try and make a free account [here][7]
@@ -384,6 +384,6 @@ UnionTable(set_num:, name:, year:) :-
 
 This will perform a `UNION` on the sets that was made in 1999 and 2019.
 
-I wasn't expecting the explanation to be this long :laughing:. I was going to perform some simple data exploration but since it became so long, I decide to break it into parts. So, I will continue with them on my next post. Stay tuned!
+I wasn't expecting the explanation to be this long 😆. I was going to perform some simple data exploration but since it became so long, I decide to break it into parts. So, I will continue with them on my next post. Stay tuned!
 
-p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts :relaxed:
+p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts ☺️

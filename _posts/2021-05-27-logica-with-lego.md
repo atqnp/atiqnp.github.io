@@ -86,15 +86,15 @@ So, what this does is the database in my BigQuery is extracted to the `Sets` pre
 %%logica Sets
 
 Sets(set_num:, name:, year:) :- 
-	`lego_data.sets`(set_num:, name:, year:);
+  `lego_data.sets`(set_num:, name:, year:);
 ```
 in SQL this is similar with
 
 ```sql
 SELECT
-	set_num, 
-	name, 
-	year 
+    set_num, 
+    name, 
+    year 
 FROM `lego_data.sets`
 ```
 This will extract the column `set_num`, `name` and `year` from the table.
@@ -106,17 +106,17 @@ A column name can be renamed however we wanted. In Logica, we can do it as follo
 %%logica Sets
 
 Sets(set_num:, name:, year:, pcs:) :- 
-	`lego_data.sets`(set_num:, name:, year:, num_parts:pcs);
+  `lego_data.sets`(set_num:, name:, year:, num_parts:pcs);
 ```
 This will change the column name `num_parts` as `pcs`. This change will make us more familiar with the LEGO data since they used the number of parts as pieces.
 Similarly, in SQL:
 
 ```sql
 SELECT 
-	set_num,
-	name,
-	year,
-	num_parts AS pcs 
+    set_num,
+    name,
+    year,
+    num_parts AS pcs 
 FROM `lego_data.sets`
 ```
 
@@ -128,9 +128,9 @@ For extracting only a certain record, in SQL usually a `WHERE` clause is used. F
 
 ```sql
 SELECT
-	set_num, 
-	name, 
-	year 
+    set_num, 
+    name, 
+    year 
 FROM `lego_data.sets` 
 WHERE year = 2019
 ```
@@ -141,7 +141,7 @@ In Logica, we can define the filtering during the predicate naming and extractio
 %%logica Sets
 
 Sets(set_num:, name:) :- 
-	`lego_data.sets`(set_num:, name:, year: 2019);
+  `lego_data.sets`(set_num:, name:, year: 2019);
 ```
 
 However, as you can see, using this way, the columns that are used for filtering is not extracted into the final predicate. For me, this is a bit of a setback because I wanted to check if the year is correct in the final extraction. But, it may seems like a redundant on some and they prefer it this way. Anyway, another way to go at it is as follows:
@@ -150,8 +150,8 @@ However, as you can see, using this way, the columns that are used for filtering
 %%logica Sets
 
 Sets(set_num:, name:, year:) :- 
-	`lego_data.sets`(set_num:, name:, year:),
-	year == 2019;
+  `lego_data.sets`(set_num:, name:, year:),
+    year == 2019;
 ```
 
 Using this method could get you all the columns back. So, I think this might be more preferable to most.
@@ -165,7 +165,7 @@ In Logica, some of the SQL functions and operator that is available in BigQuery 
 
 Sets(set_num:, name:, year:) :- 
   `lego_data.sets`(set_num:, name:, year:),
-  Like(name, "%Star Wars%");
+    Like(name, "%Star Wars%");
 ```
 In the example above, I tried to search for all the sets that contain the word Star Wars.
 
@@ -178,7 +178,7 @@ As of the time during this writing, I could not find the `BETWEEN` operator so I
 
 Sets(set_num:, name:, year:) :- 
   `lego_data.sets`(set_num:, name:, year:), 
-  year > 2000 && year < 2010;
+    year > 2000 && year < 2010;
 ```
 This will get all the LEGO sets that were made between the year 2001 and 2009. And for an example of `OR` operator:
 
@@ -187,7 +187,7 @@ This will get all the LEGO sets that were made between the year 2001 and 2009. A
 
 Sets(set_num:, name:, year:) :-
   `lego_data.sets`(set_num:, name:, year:), 
-  Like(name, "%Star Wars%") || Like(name, "%Harry Potter%");
+    Like(name, "%Star Wars%") || Like(name, "%Harry Potter%");
 ```
 This one will get us the sets that contains the word Star Wars or Harry Potter.
 
@@ -201,17 +201,17 @@ The usage of `ORDER BY` and `LIMIT` require us to explicitly state it before the
 @Limit(Sets, 10);
 Sets(set_num:, name:, year:, pcs:) :- 
   `lego_data.sets`(set_num:, name:, year:, num_parts: pcs), 
-  year >= 2001 && year <= 2010;
+    year >= 2001 && year <= 2010;
 ```
 
 Similarly, in SQL:
 
 ```sql
 SELECT 
-	set_num,
-	name,
-	year,
-	num_parts AS pcs 
+    set_num,
+    name,
+    year,
+    num_parts AS pcs 
 FROM `lego_data.sets`
 WHERE year >= 2001 AND year <= 2010
 ORDER BY pcs DESC
@@ -246,9 +246,9 @@ As you can see, the way to write an aggregate function is: `<name(arbitrary)>? <
 
 ```sql
 SELECT 
-	year,
-	MIN(num_parts) AS min_pcs,
-	MAX(num_parts) AS max_pcs
+    year,
+    MIN(num_parts) AS min_pcs,
+    MAX(num_parts) AS max_pcs
 FROM `lego_data.sets`
 GROUP BY year
 ```
@@ -293,11 +293,11 @@ This will join both table while changing the `name` from the `Theme` table to `t
 
 ```sql
 SELECT 
-	LegoSets.set_num,
-	LegoSets.name,
-	LegoSets.theme_id,
-	LegoTheme.name AS theme_name,
-	LegoSets.num_parts,
+    LegoSets.set_num,
+    LegoSets.name,
+    LegoSets.theme_id,
+    LegoTheme.name AS theme_name,
+    LegoSets.num_parts,
 FROM `lego_data.sets` LegoSets
 JOIN `lego_data.themes` LegoThemes
 ON LegoSets.theme_id = LegoThemes.id
@@ -340,28 +340,28 @@ GetPID(theme_id) = parent_id :-
 
 # Running full outer join.
 OuterJoin(theme_id:, 
-	theme_name:, 
-	parent_id:, 
-	set_num:, 
-	name:, 
-	year:, 
-	num_parts:) :-
-		GetId(theme_id:),
-		theme_name == GetTheme(theme_id),
-		parent_id == GetPID(theme_id),
-		set_num == GetSetNum(theme_id),
-		name == GetName(theme_id),
-		year == GetYear(theme_id),
-		num_parts == GetPcs(theme_id);
+  theme_name:, 
+  parent_id:, 
+  set_num:, 
+  name:, 
+  year:, 
+  num_parts:) :-
+      GetId(theme_id:),
+      theme_name == GetTheme(theme_id),
+      parent_id == GetPID(theme_id),
+      set_num == GetSetNum(theme_id),
+      name == GetName(theme_id),
+      year == GetYear(theme_id),
+      num_parts == GetPcs(theme_id);
 
 # Running left join.
 LeftJoin(theme_id:, 
-	theme_name:  
-	set_num: GetSetNum(theme_id),
-	name: GetName(theme_id),
-	year: GetYear(theme_id),
-	num_parts: GetPcs(theme_id)) :-
-		Theme(id:theme_id, name:theme_name);
+  theme_name:  
+  set_num: GetSetNum(theme_id),
+  name: GetName(theme_id),
+  year: GetYear(theme_id),
+  num_parts: GetPcs(theme_id)) :-
+    Theme(id:theme_id, name:theme_name);
 
 ```
 

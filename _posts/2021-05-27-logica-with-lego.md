@@ -10,18 +10,18 @@ It has been a few weeks since my last post. I am still taking some time to get t
 ## Introduction
 
 Recently, Google introduce a new logical-based language in order to make SQL more accessible. It is called Logica.
-If you knew SQL then you might be familiar with all the syntax but Logica just made easier. You can read more about it [here](https://opensource.google/projects/logica) and [here](https://opensource.googleblog.com/2021/04/logica-organizing-your-data-queries.html)
+If you knew SQL then you might be familiar with all the syntax but Logica just made it easier. You can read more about it [here](https://opensource.google/projects/logica) and [here](https://opensource.googleblog.com/2021/04/logica-organizing-your-data-queries.html)
 
 At the time of this writing, it is only available for BigQuery processing engine but there are also others in the work.
 In this post, I will be going to share a little bit about what I did using Logica while learning them so you could also consider this as a kind of tutorial 😜.
 Because I love LEGO, and it became a new hobby of mine (actually I loved them since my childhood but they were very expensive for me 😆), so I combined Logica with LEGO and try to explore the data with it.
 
-Before we go further, a few points to note. The dataset was taken from rebrickable. If you want, you can get them [here](https://rebrickable.com/downloads/). The dataset there is always renewed daily. The one that I used was on/until 26th of May 2021. So it may differs based on the date that you download the dataset. Another point to be taken; the work was done using [Google Colaboratory](https://colab.research.google.com/). You can try and run it yourself. I will try to attach a link to my notebook at the end of this post. Logica can also be run locally and its scripts can be written in its own file ending with the `.l` extension. However, I will not get into that here. If you want to learn more about it you can check it [here](https://logica.dev/)
+Before we go further, a few points to note. The dataset was taken from rebrickable. If you want, you can get them [here](https://rebrickable.com/downloads/). The dataset there is always renewed daily. The one that I used was on/until 26th of May 2021. So it may differs based on the date that you download the dataset. Another point to be taken; all of the work here was done using [Google Colaboratory](https://colab.research.google.com/). You can try and run it yourself. I will try to attach a link to my notebook at the end of this post. Logica can also be run locally and its scripts can be written in its own file ending with the `.l` extension. However, I will not get into that here. If you want to learn more about it you can check it [here](https://logica.dev/)
 Another thing to note, before I forgot, a Google Cloud Platform (GCP) account is required to run the program. You can try and make a free account [here](https://cloud.google.com/)
 
-UPDATE: If you don't want to make a GCP account, Logica can use the SQLite engine.
+UPDATE: If you don't want to make a GCP account, Logica can use the SQLite engine now.
 
-First thing first, package including Logica is required to be installed. You can run the using the pip command.
+First thing first, package including Logica is required to be installed. You can install them using the pip command.
 
 ```python
 !pip install logica
@@ -65,14 +65,14 @@ data = {'greeting': ['Hello world!']}
 Intro = pd.DataFrame(data)
 ```
 
-Similar with Pandas, with can recall the predicate later and even use it as a DataFrame in Python. Without further ado, let us dive in. I will try to follow the same concept as an SQL tutorial using Logica.
+Similar with Pandas, we can recall the predicate later and even use it as a DataFrame in Python. Without further ado, let us dive in. I will try to follow the same concept as an SQL tutorial using Logica.
 
 ## Logica - SQL syntax
 
 ### Querying, filtering, and sorting data
 
 #### `SELECT` statement
-Firstly, we need to connect the database and define the predicate. I already uploaded the data to my BigQuery.
+Firstly, we need to connect the database and define the predicate. I already uploaded the data to my BigQuery. So, I will refer the table here.
 
 ```python
 %%logica Sets
@@ -80,7 +80,7 @@ Firstly, we need to connect the database and define the predicate. I already upl
 Sets(set_num:) :- `lego_data.sets`(set_num:);
 ```
 
-So, what this does is the database in my BigQuery is extracted to the `Sets` predicate. In this case only the columns `set_num` is extracted. In order to extract any/certain column, `<column name>:` can be used. Multiple column extraction can be divided using a comma, such as:
+So, what this does is, the database in my BigQuery is extracted to the `Sets` predicate. In this case only the columns `set_num` is extracted. In order to extract any/certain column, `<column name>:` can be used. Multiple column extraction can be divided using a comma, such as:
 
 ```python
 %%logica Sets
@@ -88,6 +88,7 @@ So, what this does is the database in my BigQuery is extracted to the `Sets` pre
 Sets(set_num:, name:, year:) :- 
   `lego_data.sets`(set_num:, name:, year:);
 ```
+
 in SQL this is similar with
 
 ```sql
@@ -105,12 +106,15 @@ This will extract the column `set_num`, `name` and `year` from the table. Anothe
 
 Sets(..t) :- `lego_data.sets`(..t);
 ```
+
 Using this one will extract the whole table similar to:
 
 ```sql
 SELECT * FROM `lego_data.sets`
 ```
+
 This will prove useful when there is a large number of columns in a table. In Logica, the column names' are changed with `..<variables>`
+
 #### `AS` clause
 A column name can be renamed however we wanted. In Logica, we can do it as follows.
 
@@ -120,6 +124,7 @@ A column name can be renamed however we wanted. In Logica, we can do it as follo
 Sets(set_num:, name:, year:, pcs:) :- 
   `lego_data.sets`(set_num:, name:, year:, num_parts:pcs);
 ```
+
 This will change the column name `num_parts` as `pcs`. This change will make us more familiar with the LEGO data since they used the number of parts as pieces.
 Similarly, in SQL:
 
@@ -135,7 +140,6 @@ FROM `lego_data.sets`
 In Logica, the renaming of a column is easier, more explicit and clearer thus making it easier to do the `JOIN` operation. We will cover more on these later.
 
 #### `WHERE` clause
-
 For extracting only a certain record, in SQL usually a `WHERE` clause is used. For example:
 
 ```sql
@@ -147,7 +151,7 @@ FROM `lego_data.sets`
 WHERE year = 2019
 ```
 
-In Logica, we can define the filtering during the predicate naming and extraction. There are two ways to do this (that I know of currently :D). The first way is:
+In Logica, we can define the filtering during the predicate naming and extraction. There are two ways to do this (that I know of currently 😃). The first way is:
 
 ```python
 %%logica Sets
@@ -169,7 +173,6 @@ Sets(set_num:, name:, year:) :-
 Using this method could get you all the columns back. So, I think this might be more preferable to most.
 
 #### `LIKE` operator and wildcard
-
 In Logica, some of the SQL functions and operator that is available in BigQuery can be use with a function-like syntax. The function is written in camel-case. For example, this is the usage of `LIKE` operator and a wildcard.
 
 ```python
@@ -182,7 +185,6 @@ Sets(set_num:, name:, year:) :-
 In the example above, I tried to search for all the sets that contain the word Star Wars.
 
 #### `BETWEEN`, `AND`, and `OR` operator
-
 As of the time during this writing, I could not find the `BETWEEN` operator so I had to turn to another method that could act as one. `BETWEEN` operator is similar to the `AND` operator when you put the value in a range. For example `WHERE x BETWEEN 1 AND 6` is similar with `WHERE x >= 1 AND x <= 6`. In Logica, the operator `AND` and `OR` can be written as `&&` and `||` respectively. For example:
 
 ```python
@@ -192,6 +194,7 @@ Sets(set_num:, name:, year:) :-
   `lego_data.sets`(set_num:, name:, year:), 
     year > 2000 && year < 2010;
 ```
+
 This will get all the LEGO sets that were made between the year 2001 and 2009. And for an example of `OR` operator:
 
 ```python
@@ -230,7 +233,7 @@ ORDER BY pcs DESC
 LIMIT 10
 ```
 
-So, basically this will extract the top 10 set with the highest number of pieces made between the year 2001 and 2010. As you can see, in order to use the `ORDER BY` and `LIMIT`, we can use it in a similar pattern as a Python function. For `ORDER BY`, we can set as `@OrderBy(<predicate>,"<column> <blank:default(asc)/desc>")`. In the case of `LIMIT`; `@Limit(<predicate>, <no. of limit:int>`. There are a few other functions that are written this way but I have yet to learn them all.
+So, basically this will extract the top 10 set with the highest number of pieces made between the year 2001 and 2010. As you can see, in order to use the `ORDER BY` and `LIMIT`, we can use it in a similar pattern as a Python function. For `ORDER BY`, we can set as `@OrderBy(<predicate>,"<field name><space><blank:default(asc)/desc>")`. In the case of `LIMIT`; `@Limit(<predicate>, <no. of limit:int>`. There are a few other functions that are written this way but I have yet to learn them all.
 
 ### Aggregation function
 Here, I will show how to use some of the most common aggregation functions: `MAX`,`MIN`,`AVG`,`COUNT`, and `SUM`
@@ -266,7 +269,7 @@ GROUP BY year
 ```
 
 #### `AVG()`, `COUNT()`, and `SUM()` function
-Similar with the above function, in Logica, these function can be written as follows:
+Similar with the above function, in Logica, these functions can be written as follows:
 
 ```python
 %%logica AvgSets, CountSets, SumSets
@@ -281,7 +284,9 @@ SumSets(year:, pcs? Sum=num_parts) distinct:-
   `lego_data.sets`(year:, num_parts:);
 ```
 
-So, `AvgSets` will execute the `AVG()` function and get us the average number of parts or pieces for each year and `CountSets` will call the `COUNT()` function which will then count the number of sets that LEGO made for each year. Lastly, `SumSets` will execute the `SUM()` function and count all the number of pieces that LEGO made each year.
+So, `AvgSets` will execute the `AVG()` function and get us the average number of parts or pieces for each year and `CountSets` will call the `COUNT()` function which will then count the number of distinct sets that LEGO made for each year. Lastly, `SumSets` will execute the `SUM()` function and count all the number of pieces that LEGO made each year.
+
+Side note: I just learned that Logica's `Count(x)` actually corresponds to the `APPROX_COUNT_DISTINCT(x)` function in BigQuery and `COUNT(DISTINCT x)` in Postgres and SQLite. In this case, the `Count()` function in Logica automatically counts distinct elements and we don't have to explicitly state it. The `COUNT()` function actually counts all non-null value in a table.
 
 ### `JOIN` and `UNION` - Joining multiple tables in Logica
 
@@ -318,7 +323,7 @@ ON LegoSets.theme_id = LegoThemes.id
 This is where I think Logica really shines because when it comes to multiple tables, it will be more complicated that this. In Logica, it is easier to keep track of the column name changes from each table and the column that we joined them on.
 
 #### `OUTER JOIN`, and `LEFT JOIN`
-Here, Logica turns from nice and easy to a little bit complicated :laughing:. To do an `OUTER JOIN` or `LEFT JOIN`, we have to define the key that we want to join them on. Then we assigned the value using a function. Because of its complexity, I will use a dummy data (It is not actually dummy but just an excerpt taken from the whole data :laughing:).
+Here, Logica turns from nice and easy to a little bit complicated 😁. To do an `OUTER JOIN` or `LEFT JOIN`, we have to define the key that we want to join them on. Then we assigned the value using a function. Because of its complexity, I will use a dummy data (It is not actually dummy but just an excerpt taken from the whole data 😆).
 
 ```python
 %%logica OuterJoin, LeftJoin
@@ -392,4 +397,4 @@ This will perform a `UNION` on the sets that was made in 1999 and 2019.
 
 I wasn't expecting the explanation to be this long 😆. I was going to perform some simple data exploration but since it became so long, I decide to break it into parts. So, I will continue with them on my next post. Stay tuned!
 
-p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts.
+p/s: Actually, I had started to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts.

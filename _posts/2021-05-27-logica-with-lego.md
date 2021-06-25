@@ -90,7 +90,7 @@ Sets(set_num:, name:, year:) :-
 ```
 in SQL this is similar with
 
-```SQL
+```sql
 SELECT
 	set_num, 
 	name, 
@@ -111,7 +111,7 @@ Sets(set_num:, name:, year:, pcs:) :-
 This will change the column name `num_parts` as `pcs`. This change will make us more familiar with the LEGO data since they used the number of parts as pieces.
 Similarly, in SQL:
 
-```SQL
+```sql
 SELECT 
 	set_num,
 	name,
@@ -126,7 +126,7 @@ In Logica, the renaming of a column is easier, more explicit and clearer thus ma
 
 For extracting only a certain record, in SQL usually a `WHERE` clause is used. For example:
 
-```SQL
+```sql
 SELECT
 	set_num, 
 	name, 
@@ -206,7 +206,7 @@ Sets(set_num:, name:, year:, pcs:) :-
 
 Similarly, in SQL:
 
-```SQL
+```sql
 SELECT 
 	set_num,
 	name,
@@ -244,7 +244,7 @@ Sets(year:, max_pcs? Max=num_parts) distinct:-
 
 As you can see, the way to write an aggregate function is: `<name(arbitrary)>? <aggregate function>=<column>` and before the extraction from the table, we have to put `distinct`. Here, `distinct` is actually equivalent with `GROUP BY` in an SQL syntax. So in SQL, it will be something similar as this:
 
-```SQL
+```sql
 SELECT 
 	year,
 	MIN(num_parts) AS min_pcs,
@@ -291,7 +291,7 @@ Sets(set_num:, name:, year:, theme_id:, theme_name:, num_parts: ) :-
 
 This will join both table while changing the `name` from the `Theme` table to `theme_name`. If this is written in SQL, it will be:
 
-```SQL
+```sql
 SELECT 
 	LegoSets.set_num,
 	LegoSets.name,

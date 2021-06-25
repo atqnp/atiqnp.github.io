@@ -97,8 +97,20 @@ SELECT
     year 
 FROM `lego_data.sets`
 ```
-This will extract the column `set_num`, `name` and `year` from the table.
 
+This will extract the column `set_num`, `name` and `year` from the table. Another way at it is by:
+
+```python
+%%logica Sets
+
+Sets(..t) :- `lego_data.sets`(..t);
+```
+Using this one will extract the whole table similar to:
+
+```sql
+SELECT * FROM `lego_data.sets`
+```
+This will prove useful when there is a large number of columns in a table. In Logica, the column names' are changed with `..<variables>`
 #### `AS` clause
 A column name can be renamed however we wanted. In Logica, we can do it as follows.
 
@@ -242,7 +254,7 @@ Sets(year:, max_pcs? Max=num_parts) distinct:-
   `lego_data.sets`(year:, num_parts:);
 ```
 
-As you can see, the way to write an aggregate function is: `<name(arbitrary)>? <aggregate function>=<column>` and before the extraction from the table, we have to put `distinct`. Here, `distinct` is actually equivalent with `GROUP BY` in an SQL syntax. So in SQL, it will be something similar as this:
+As you can see, the way to write an aggregate function is: `<field name>? <aggregate function>=<aggregate input>` and before the extraction from the table, we have to put `distinct`. Here, `distinct` is actually equivalent with `GROUP BY` in an SQL syntax. So in SQL, it will be something similar as this:
 
 ```sql
 SELECT 
@@ -380,4 +392,4 @@ This will perform a `UNION` on the sets that was made in 1999 and 2019.
 
 I wasn't expecting the explanation to be this long 😆. I was going to perform some simple data exploration but since it became so long, I decide to break it into parts. So, I will continue with them on my next post. Stay tuned!
 
-p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts ☺️
+p/s: Actually, I had starting to write this post since last month but could not finish it. I guess, the right way maybe to write it in parts.
